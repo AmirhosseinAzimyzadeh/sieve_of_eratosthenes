@@ -22,14 +22,14 @@ pub fn user_input_validator(input: &str) -> Result<UserInput, SOEErrors> {
 
   if numbers.len() == 2 { numbers.push(DEFAULT_DELAY); }
 
-  if numbers[0] > numbers[1] {
-    return Err(SOEErrors::InvalidRange);
-  }
+  // if numbers[0] > numbers[1] {
+  //   return Err(SOEErrors::InvalidRange);
+  // }
 
   return Result::Ok(
     UserInput{
-      start: numbers[0],
-      end: numbers[1],
-      delay: Duration::from_millis(numbers[2] as u64),
+      start: 1,
+      end: numbers[0],
+      delay: Duration::from_millis(numbers[1] as u64),
     });
 }
