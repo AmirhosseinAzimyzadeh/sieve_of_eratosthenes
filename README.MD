@@ -1,3 +1,3 @@
 # Sieve of Eratosthenes
-in terminal with animation
+in terminal with delay animation
 ****
