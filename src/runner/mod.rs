@@ -1,5 +1,5 @@
 use crate::data::{ UserInput, Number };
-use std::thread;
+use std::{ thread, time };
 
 pub fn runner(user_input: UserInput) {
   let mut numbers = create_numbers(user_input.start,user_input.end);
@@ -7,21 +7,21 @@ pub fn runner(user_input: UserInput) {
   for i in 0..numbers.len() {
     let (current_number, other_numbers) =
       numbers.split_one_mut(i);
-    if current_number.value == 2 {
-      current_number.is_prime = Some(true);
-      continue;
-    }
     if current_number.value == 1 {
       current_number.is_prime = Some(false);
       continue;
+    }
+    if current_number.is_prime == None {
+      current_number.is_prime = Some(true);
     }
     for number in other_numbers {
       if number.value % current_number.value == 0 {
         number.is_prime = Some(false);
       }
     }
+    thread::sleep(user_input.delay);
+    render(&numbers);
   }
-  render(&numbers);
 }
 
 fn create_numbers(start: u32, end: u32) -> Vec<Number> {
@@ -37,6 +37,9 @@ fn create_numbers(start: u32, end: u32) -> Vec<Number> {
 
 
 fn render(numbers: &[Number]) {
+  // clear terminal
+  print!("{esc}c", esc = 27 as char);
+  // print numbers
   let mut element_counter = 0;
   for number in numbers {
     number.print();
