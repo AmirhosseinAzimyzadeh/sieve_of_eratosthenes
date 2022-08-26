@@ -19,7 +19,5 @@ fn main() {
 
 fn guide_and_greeting() {
   println!("Sieve of Eratosthenes");
-  println!("
-  Enter the range and delay: (separated with '-') [e.g a - b - d]
-  which means show the algorithm for prime numbers from 'a' to 'b' with animation delay of 'd' ms");
+  println!("Enter the max and delay: (separated with '-') [e.g 100 - 100]");
 }
